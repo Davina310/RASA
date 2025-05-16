@@ -1,0 +1,605 @@
+version: "3.1"
+
+
+stories:
+
+  
+
+  - story: شكر المستخدم 
+    steps:
+      - intent: thank_you
+      - action: utter_thank_you
+
+  - story: إنهاء المحادثة
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: بداية المحادثة
+    steps:
+      - intent: greet
+      - action: utter_greet
+
+
+  - story: مسار توصية مساعد صيدلي
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: ask_help
+      - action: utter_provide_skills
+      
+      - intent: provide_skills
+        entities:
+          - skill: "تفكير تحليلي"
+          - skill: "مهارات يدوية"
+      - slot_was_set:
+          - skill: ["تفكير تحليلي", "مهارات يدوية"]
+      - action: utter_provide_learning_style
+      
+      - intent: provide_learning_style
+        entities:
+          - learning_style: "عملي"
+      - slot_was_set:
+          - learning_style: ["عملي"]
+      - action: utter_provide_thinking_style
+      
+      - intent: provide_thinking_style
+        entities:
+          - thinking_style: "تحليل أسباب"
+      - slot_was_set:
+          - thinking_style: ["تحليل أسباب"]
+      - action: utter_provide_work_nature
+      
+      - intent: provide_work_nature
+        entities:
+          - work_nature: "مختبرية"
+      - slot_was_set:
+          - work_nature: ["مختبرية"]
+      - action: utter_provide_subject
+      
+      - intent: provide_subject
+        entities:
+          - subject: "كيمياء"
+          - subject: "علوم"
+      - slot_was_set:
+          - subject: ["كيمياء", "علوم"]
+      - action: action_suggest_major
+      - intent: thank_you
+      - action: utter_thank_you
+
+  - story: مسار توصية ذكاء صنعي
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: ask_help
+      - action: utter_provide_skills
+      
+      - intent: provide_skills
+        entities:
+          - skill: "برمجة"
+          - skill: "تفكير تحليلي"
+      - slot_was_set:
+          - skill: ["برمجة", "تفكير تحليلي"]
+      - action: utter_provide_learning_style
+      
+      - intent: provide_learning_style
+        entities:
+          - learning_style: "محاضرات"
+      - slot_was_set:
+          - learning_style: ["محاضرات"]
+      - action: utter_provide_thinking_style
+      
+      - intent: provide_thinking_style
+        entities:
+          - thinking_style: "حل جماعي"
+      - slot_was_set:
+          - thinking_style: ["حل جماعي"]
+      - action: utter_provide_work_nature
+      
+      - intent: provide_work_nature
+        entities:
+          - work_nature: "مكتبية"
+      - slot_was_set:
+          - work_nature: ["مكتبية"]
+      - action: utter_provide_subject
+      
+      - intent: provide_subject
+        entities:
+          - subject: "رياضيات"
+          - subject: "حاسوب"
+      - slot_was_set:
+          - subject: ["رياضيات", "حاسوب"]
+      - action: action_suggest_major
+      - intent: thank_you
+      - action: utter_thank_you
+
+  - story: مسار توصية نظم معلومات
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: ask_help
+      - action: utter_provide_skills
+      
+      - intent: provide_skills
+        entities:
+          - skill: "برمجة"
+          - skill: "تواصل"
+      - slot_was_set:
+          - skill: ["برمجة", "تواصل"]
+      - action: utter_provide_learning_style
+      
+      - intent: provide_learning_style
+        entities:
+          - learning_style: "ذاتي"
+      - slot_was_set:
+          - learning_style: ["ذاتي"]
+      - action: utter_provide_thinking_style
+      
+      - intent: provide_thinking_style
+        entities:
+          - thinking_style: "بحث عن حلول"
+      - slot_was_set:
+          - thinking_style: ["بحث عن حلول"]
+      - action: utter_provide_work_nature
+      
+      - intent: provide_work_nature
+        entities:
+          - work_nature: "ميدانية"
+      - slot_was_set:
+          - work_nature: ["ميدانية"]
+      - action: utter_provide_subject
+      
+      - intent: provide_subject
+        entities:
+          - subject: "حاسوب"
+      - slot_was_set:
+          - subject: ["حاسوب"]
+      - action: action_suggest_major
+      - intent: thank_you
+      - action: utter_thank_you
+
+  - story: مسار توصية فني مختبر طبي
+    steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: ask_help
+    - action: utter_provide_skills
+    
+    - intent: provide_skills
+      entities:
+        - skill: "تفكير تحليلي"
+        - skill: "مهارات يدوية"
+    - slot_was_set:
+        - skill: ["تفكير تحليلي", "مهارات يدوية"]
+    - action: utter_provide_learning_style
+    
+    - intent: provide_learning_style
+      entities:
+        - learning_style: "عملي"
+    - slot_was_set:
+        - learning_style: ["عملي"]
+    - action: utter_provide_thinking_style
+    
+    - intent: provide_thinking_style
+      entities:
+        - thinking_style: "تحليل أسباب"
+    - slot_was_set:
+        - thinking_style: ["تحليل أسباب"]
+    - action: utter_provide_work_nature
+    
+    - intent: provide_work_nature
+      entities:
+        - work_nature: "مختبرية"
+    - slot_was_set:
+        - work_nature: ["مختبرية"]
+    - action: utter_provide_subject
+    
+    - intent: provide_subject
+      entities:
+        - subject: "كيمياء"
+        - subject: "علوم"
+    - slot_was_set:
+        - subject: ["كيمياء", "علوم"]
+    - action: action_suggest_major
+    - intent: thank_you
+    - action: utter_thank_you
+
+  - story: مسار توصية ميكاترونكس
+    steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: ask_help
+    - action: utter_provide_skills
+    
+    - intent: provide_skills
+      entities:
+        - skill: "برمجة"
+        - skill: "حل مشاكل"
+    - slot_was_set:
+        - skill: ["برمجة", "حل مشاكل"]
+    - action: utter_provide_learning_style
+    
+    - intent: provide_learning_style
+      entities:
+        - learning_style: "عملي"
+    - slot_was_set:
+        - learning_style: ["عملي"]
+    - action: utter_provide_thinking_style
+    
+    - intent: provide_thinking_style
+      entities:
+        - thinking_style: "حل جماعي"
+    - slot_was_set:
+        - thinking_style: ["حل جماعي"]
+    - action: utter_provide_work_nature
+    
+    - intent: provide_work_nature
+      entities:
+        - work_nature: "مختبرية"
+    - slot_was_set:
+        - work_nature: ["مختبرية"]
+    - action: utter_provide_subject
+    
+    - intent: provide_subject
+      entities:
+        - subject: "فيزياء"
+        - subject: "رياضيات"
+    - slot_was_set:
+        - subject: ["فيزياء", "رياضيات"]
+    - action: action_suggest_major
+    - intent: thank_you
+    - action: utter_thank_you
+
+  - story: مسار توصية إدارة تسويق
+    steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: ask_help
+    - action: utter_provide_skills
+    
+    - intent: provide_skills
+      entities:
+        - skill: "تواصل"
+        - skill: "إبداع"
+    - slot_was_set:
+        - skill: ["تواصل", "إبداع"]
+    - action: utter_provide_learning_style
+    
+    - intent: provide_learning_style
+      entities:
+        - learning_style: "جماعي"
+    - slot_was_set:
+        - learning_style: ["جماعي"]
+    - action: utter_provide_thinking_style
+    
+    - intent: provide_thinking_style
+      entities:
+        - thinking_style: "تفكير إبداعي"
+    - slot_was_set:
+        - thinking_style: ["تفكير إبداعي"]
+    - action: utter_provide_work_nature
+    
+    - intent: provide_work_nature
+      entities:
+        - work_nature: "عمل جماعي"
+    - slot_was_set:
+        - work_nature: ["عمل جماعي"]
+    - action: utter_provide_subject
+    
+    - intent: provide_subject
+      entities:
+        - subject: "اقتصاد"
+        - subject: "إدارة"
+    - slot_was_set:
+        - subject: ["اقتصاد", "إدارة"]
+    - action: action_suggest_major
+    - intent: thank_you
+    - action: utter_thank_you
+
+  - story: مسار توصية مساعد مهندس مدني
+    steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: ask_help
+    - action: utter_provide_skills
+    
+    - intent: provide_skills
+      entities:
+        - skill: "تفكير تحليلي"
+        - skill: "تنظيم"
+    - slot_was_set:
+        - skill: ["تفكير تحليلي", "تنظيم"]
+    - action: utter_provide_learning_style
+    
+    - intent: provide_learning_style
+      entities:
+        - learning_style: "تطبيق"
+    - slot_was_set:
+        - learning_style: ["تطبيق"]
+    - action: utter_provide_thinking_style
+    
+    - intent: provide_thinking_style
+      entities:
+        - thinking_style: "حل جماعي"
+    - slot_was_set:
+        - thinking_style: ["حل جماعي"]
+    - action: utter_provide_work_nature
+    
+    - intent: provide_work_nature
+      entities:
+        - work_nature: "ميدانية"
+    - slot_was_set:
+        - work_nature: ["ميدانية"]
+    - action: utter_provide_subject
+    
+    - intent: provide_subject
+      entities:
+        - subject: "رياضيات"
+        - subject: "هندسة"
+    - slot_was_set:
+        - subject: ["رياضيات", "هندسة"]
+    - action: action_suggest_major
+    - intent: thank_you
+    - action: utter_thank_you
+  - story: مسار توصية مساعد مهندس معماري
+    steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: ask_help
+    - action: utter_provide_skills
+    
+    - intent: provide_skills
+      entities:
+        - skill: "تصميم"
+        - skill: "إبداع"
+    - slot_was_set:
+        - skill: ["تصميم", "إبداع"]
+    - action: utter_provide_learning_style
+    
+    - intent: provide_learning_style
+      entities:
+        - learning_style: "إبداع"
+    - slot_was_set:
+        - learning_style: ["إبداع"]
+    - action: utter_provide_thinking_style
+    
+    - intent: provide_thinking_style
+      entities:
+        - thinking_style: "تفكير إبداعي"
+    - slot_was_set:
+        - thinking_style: ["تفكير إبداعي"]
+    - action: utter_provide_work_nature
+    
+    - intent: provide_work_nature
+      entities:
+        - work_nature: "تصميم"
+    - slot_was_set:
+        - work_nature: ["تصميم"]
+    - action: utter_provide_subject
+    
+    - intent: provide_subject
+      entities:
+        - subject: "تصميم"
+        - subject: "رياضيات"
+    - slot_was_set:
+        - subject: ["تصميم", "رياضيات"]
+    - action: action_suggest_major
+    - intent: thank_you
+    - action: utter_thank_you
+  - story: مسار توصية مصارف وتأمين
+    steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: ask_help
+    - action: utter_provide_skills
+    
+    - intent: provide_skills
+      entities:
+        - skill: "تفكير تحليلي"
+        - skill: "تواصل"
+    - slot_was_set:
+        - skill: ["تفكير تحليلي", "تواصل"]
+    - action: utter_provide_learning_style
+    
+    - intent: provide_learning_style
+      entities:
+        - learning_style: "اختبارات"
+    - slot_was_set:
+        - learning_style: ["اختبارات"]
+    - action: utter_provide_thinking_style
+    
+    - intent: provide_thinking_style
+      entities:
+        - thinking_style: "بحث عن حلول"
+    - slot_was_set:
+        - thinking_style: ["بحث عن حلول"]
+    - action: utter_provide_work_nature
+    
+    - intent: provide_work_nature
+      entities:
+        - work_nature: "أعمال مالية"
+    - slot_was_set:
+        - work_nature: ["أعمال مالية"]
+    - action: utter_provide_subject
+    
+    - intent: provide_subject
+      entities:
+        - subject: "اقتصاد"
+        - subject: "إحصاء"
+    - slot_was_set:
+        - subject: ["اقتصاد", "إحصاء"]
+    - action: action_suggest_major
+    - intent: thank_you
+    - action: utter_thank_you
+  - story: مسار توصية محاسبة
+    steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: ask_help
+    - action: utter_provide_skills
+    
+    - intent: provide_skills
+      entities:
+        - skill: "دقة في الحسابات"
+        - skill: "تنظيم"
+    - slot_was_set:
+        - skill: ["دقة في الحسابات", "تنظيم"]
+    - action: utter_provide_learning_style
+    
+    - intent: provide_learning_style
+      entities:
+        - learning_style: "تطبيق"
+    - slot_was_set:
+        - learning_style: ["تطبيق"]
+    - action: utter_provide_thinking_style
+    
+    - intent: provide_thinking_style
+      entities:
+        - thinking_style: "تحليل أسباب"
+    - slot_was_set:
+        - thinking_style: ["تحليل أسباب"]
+    - action: utter_provide_work_nature
+    
+    - intent: provide_work_nature
+      entities:
+        - work_nature: "مكتبية"
+    - slot_was_set:
+        - work_nature: ["مكتبية"]
+    - action: utter_provide_subject
+    
+    - intent: provide_subject
+      entities:
+        - subject: "محاسبة"
+        - subject: "رياضيات"
+    - slot_was_set:
+        - subject: ["محاسبة", "رياضيات"]
+    - action: action_suggest_major
+    - intent: thank_you
+    - action: utter_thank_you
+
+  - story: مسار توصية فني إلكترونيات
+    steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: ask_help
+    - action: utter_provide_skills
+    
+    - intent: provide_skills
+      entities:
+        - skill: "مهارات يدوية"
+        - skill: "تركيز"
+    - slot_was_set:
+        - skill: ["مهارات يدوية", "تركيز"]
+    - action: utter_provide_learning_style
+    
+    - intent: provide_learning_style
+      entities:
+        - learning_style: "عملي"
+    - slot_was_set:
+        - learning_style: ["عملي"]
+    - action: utter_provide_thinking_style
+    
+    - intent: provide_thinking_style
+      entities:
+        - thinking_style: "تفكير منهجي"
+    - slot_was_set:
+        - thinking_style: ["تفكير منهجي"]
+    - action: utter_provide_work_nature
+    
+    - intent: provide_work_nature
+      entities:
+        - work_nature: "تصليح"
+    - slot_was_set:
+        - work_nature: ["تصليح"]
+    - action: utter_provide_subject
+    
+    - intent: provide_subject
+      entities:
+        - subject: "فيزياء"
+        - subject: "حاسوب"
+    - slot_was_set:
+        - subject: ["فيزياء", "حاسوب"]
+    - action: action_suggest_major
+    - intent: thank_you
+    - action: utter_thank_you
+  - story: مسار توصية إدارة موارد بشرية
+    steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: ask_help
+    - action: utter_provide_skills
+    
+    - intent: provide_skills
+      entities:
+        - skill: "تواصل"
+        - skill: "حل مشاكل"
+    - slot_was_set:
+        - skill: ["تواصل", "حل مشاكل"]
+    - action: utter_provide_learning_style
+    
+    - intent: provide_learning_style
+      entities:
+        - learning_style: "جماعي"
+    - slot_was_set:
+        - learning_style: ["جماعي"]
+    - action: utter_provide_thinking_style
+    
+    - intent: provide_thinking_style
+      entities:
+        - thinking_style: "حل جماعي"
+    - slot_was_set:
+        - thinking_style: ["حل جماعي"]
+    - action: utter_provide_work_nature
+    
+    - intent: provide_work_nature
+      entities:
+        - work_nature: "إدارية"
+    - slot_was_set:
+        - work_nature: ["إدارية"]
+    - action: utter_provide_subject
+    
+    - intent: provide_subject
+      entities:
+        - subject: "إدارة"
+        - subject: "قانون"
+    - slot_was_set:
+        - subject: ["إدارة", "قانون"]
+    - action: action_suggest_major
+    - intent: thank_you
+    - action: utter_thank_you
+
+  - story: fetch specializations
+    steps:
+      - intent: ask_about_specializations
+      - action: action_ask_about_specializations
+
+  - story: fetch departments
+    steps:
+      - intent: ask_about_departments
+      - action: action_ask_about_departments
+
+  - story: asking admission
+    steps:
+      - intent: what_admission
+      - action: action_what_admission
+
+
+
+  - story: مسار_توصية_كامل
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: ask_help
+      - action: utter_provide_skills
+      - intent: provide_skills
+      - action: utter_provide_learning_style
+      - intent: provide_learning_style
+      - action: utter_provide_work_nature
+      - intent: provide_work_nature
+      - action: utter_provide_thinking_style
+      - intent: provide_thinking_style
+      - action: utter_provide_subject
+      - intent: provide_subject
+      - action: action_suggest_major
+      - intent: thank_you
+      - action: utter_thank_you

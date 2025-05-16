@@ -1,0 +1,78 @@
+version: "3.1"
+
+rules:
+  
+  - rule: رد على التحية
+    steps:
+      - intent: greet
+      - action: utter_greet
+
+  - rule: وداع المستخدم
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - rule: شكر المستخدم
+    steps:
+      - intent: thank_you
+      - action: utter_thank_you
+
+  - rule: استفسار عن الأقسام
+    steps:
+      - intent: ask_about_departments
+      - action: action_ask_about_departments
+
+
+  - rule: بدء عملية التوصية
+    steps:
+      - intent: ask_help
+      - action: utter_provide_skills  # نفس الاسم الأصلي
+
+  - rule: متابعة بعد المهارات
+    condition:
+      - slot_was_set:
+        - skill
+    steps:
+      - action: utter_provide_work_nature  # نفس الاسم الأصلي
+
+  - rule: متابعة بعد بيئة العمل
+    condition:
+      - slot_was_set:
+        - work_nature
+    steps:
+      - action: utter_provide_thinking_style  # نفس الاسم الأصلي
+
+  - rule: متابعة بعد أسلوب التفكير
+    condition:
+      - slot_was_set:
+        - thinking_style
+    steps:
+      - action: utter_provide_learning_style  # نفس الاسم الأصلي
+
+  - rule: متابعة بعد أسلوب التعليم
+    condition:
+      - slot_was_set:
+        - learning_style
+    steps:
+      - action: utter_provide_subject  # نفس الاسم الأصلي
+
+  - rule: إنهاء التوصية
+    condition:
+      - slot_was_set:
+        - subject
+    steps:
+      - action: action_suggest_major  # نفس الاسم الأصلي
+
+  - rule: استفسار عن التتخصصات
+    steps:
+      - intent: ask_about_specializations
+      - action: action_ask_about_specializations
+
+  - rule:  سؤال عن المفاضلة
+    steps:
+      - intent: what_admission
+      - action: action_what_admission
+
+  
+
+  
