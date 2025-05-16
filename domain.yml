@@ -1,0 +1,358 @@
+version: "3.1"
+
+intents:
+  - greet
+  - ask_help
+  - provide_skills
+  - provide_work_nature
+  - provide_thinking_style
+  - provide_subject
+  - provide_learning_style
+  - ask_about_specializations
+  - ask_about_departments
+  - what_admission
+  - thank_you
+  - goodbye
+entities:
+  - skill
+  - work_nature
+  - thinking_style
+  - subject
+  - learning_style     
+      
+  #- department         
+
+slots:
+  subject:
+    type: text  
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: subject
+        intent: provide_subject
+      - type: from_text
+        intent: provide_subject
+        not_intent: deny
+
+  thinking_style:
+    type: text  
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: thinking_style
+        intent: provide_thinking_style
+      - type: from_text
+        intent: provide_thinking_style
+        not_intent: deny  # إضافة شرط لتجنب التعارض
+
+  work_nature:
+    type: text  # تغيير النوع
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: work_nature
+        intent: provide_work_nature
+      - type: from_text
+        intent: provide_work_nature
+        not_intent: deny  # إضافة شرط
+
+  learning_style:
+    type: text  # تغيير النوع
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: learning_style
+        intent: provide_learning_style
+      - type: from_text
+        intent: provide_learning_style
+        not_intent: deny  # إضافة شرط
+
+  skill:
+    type: text  # تغيير النوع
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: skill
+        intent: provide_skills
+      - type: from_text
+        intent: provide_skills
+        not_intent: deny  
+  recommended_major:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom 
+
+responses:
+  utter_greet:
+    - text: "مرحبًا! كيف يمكنني مساعدتك اليوم؟"
+    - text: "مرحبًا! أهلاً بك في مساعد الذكاء الاصطناعي. كيف يمكنني مساعدتك؟"
+    - text: "أهلاً! يسعدني مساعدتك اليوم. كيف يمكنني خدمتك؟"
+    - text: "مرحبًا بك في خدمة المساعدة الذكية. كيف يمكنني أن أكون مفيدًا لك؟"
+    - text: "مرحبًا! أتمنى لك يومًا سعيدًا. كيف يمكنني مساعدتك في مجال التعليم؟"
+    - text: "مرحبًا! أنا هنا لمساعدتك في اتخاذ القرارات المناسبة. كيف يمكنني أن أساعدك اليوم؟"
+
+  utter_goodbye:
+    - text: "إلى اللقاء! أتمنى لك يومًا سعيدًا."
+    - text: "وداعًا! إذا كنت بحاجة إلى مساعدة أخرى، لا تتردد في العودة."
+    - text: "إلى اللقاء! أتمنى لك كل التوفيق في اختيار التخصص."
+    - text: "إلى اللقاء! إذا احتجت لأي مساعدة في المستقبل، أنا هنا!"
+    - text: "وداعًا! لا تنسى أنني هنا إذا كنت بحاجة إلى استفسار آخر."
+    - text: "إلى اللقاء! أتمنى لك مستقبلاً مشرقًا في مسيرتك التعليمية."
+    - text: "أراك لاحقًا! إذا كان لديك أي أسئلة في المستقبل، لا تتردد في طرحها."
+    - text: "إلى اللقاء! استمتع بيومك، وإذا كنت بحاجة إلى المزيد من المساعدة، أنا هنا."
+    - text: "وداعًا! أتمنى لك التوفيق في جميع قراراتك الدراسية."
+    - text: "إلى اللقاء! إذا كنت بحاجة إلى أي شيء آخر، لا تتردد في العودة."
+    - text: "أراك لاحقًا! أتمنى لك يومًا رائعًا وحظًا سعيدًا."
+    - text: "إلى اللقاء! إذا كان لديك أي استفسار مستقبلاً، لا تتردد في التواصل."
+
+  utter_provide_skills:
+    - text: "أي من هذه المهارات تشعر أنها الأقوى لديك؟ {skill}"
+      buttons:
+        - title: "التفكير التحليلي والمنطقي"
+          payload: '/provide_skills {"skill": "تفكير تحليلي"}'
+        - title: "الإبداع والابتكار"
+          payload: '/provide_skills {"skill": "إبداع"}'
+        - title: "المهارات اليدوية والتقنية"
+          payload: '/provide_skills {"skill": "مهارات يدوية"}'
+        - title: "التنظيم والتخطيط"
+          payload: '/provide_skills {"skill": "تنظيم"}'
+        - title: "التواصل والإقناع"
+          payload: '/provide_skills {"skill": "تواصل"}'
+    - text: "أي من هذه الأنشطة تستمتع بأدائها؟ {skill}"
+      buttons:
+        - title: "إصلاح الأجهزة أو فهم طريقة عملها {skill}"
+          payload: '/provide_skills {"skill": "إصلاح أجهزة"}'
+        - title: "تصميم الرسومات أو الشعارات"
+          payload: '/provide_skills {"skill": "تصميم جرافيك"}'
+        - title: "تنسيق وتنظيم فعاليات أو مشاريع"
+          payload: '/provide_skills {"skill": "تنظيم مشاريع"}'
+        - title: "استخدام برامج الحاسوب أو كتابة الأكواد"
+          payload: '/provide_skills {"skill": "برمجة"}'
+        - title: "مساعدة الآخرين والاهتمام بمشاكلهم الصحية"
+          payload: '/provide_skills {"skill": "رعاية صحية"}'
+    - text: "إذا واجهت مشكلة معقدة، ماذا تفعل عادةً؟ {skill}"
+      buttons:
+        - title: "أحللها بهدوء وأبحث عن حلول منطقية"
+          payload: '/provide_skills {"skill": "تحليل منطقي"}'
+        - title: "أبحث عن طريقة جديدة ومبتكرة لحلها"
+          payload: '/provide_skills {"skill": "تفكير إبداعي"}'
+        - title: "أطلب المساعدة وأعمل مع الآخرين لحلها"
+          payload: '/provide_skills {"skill": "عمل جماعي"}'
+        - title: "أبدأ بتنفيذ حل عملي مباشرة"
+          payload: '/provide_skills {"skill": "تنفيذ عملي"}'
+        - title: "أبحث عن معلومات أو أستشير خبيرًا"
+          payload: '/provide_skills {"skill": "استشارة خبراء"}'
+    - text: "ما نوع المشاريع التي تفضل العمل عليها؟ {skill}"
+      buttons:
+        - title: "تطوير تطبيق أو نظام"
+          payload: '/provide_skills {"skill": "تطوير برمجيات"}'
+        - title: "تنظيم حملة تسويقية أو فعالية"
+          payload: '/provide_skills {"skill": "تنظيم فعاليات"}'
+        - title: "تصميم منتج أو إعلان"
+          payload: '/provide_skills {"skill": "تصميم إعلانات"}'
+        - title: "تجربة عملية أو تصليح جهاز"
+          payload: '/provide_skills {"skill": "إصلاح أجهزة"}'
+        - title: "تقديم رعاية أو معلومات طبية لشخص"
+          payload: '/provide_skills {"skill": "رعاية طبية"}'
+  utter_provide_work_nature:
+    - text: "هل تفضل العمل في بيئة:"
+      buttons:
+        - title: "مكتبية"
+          payload: '/provide_work_nature{"work_nature": "مكتبية"}'
+        - title: "ميدانية"
+          payload: '/provide_work_nature{"work_nature": "ميدانية"}'
+        - title: "مختبرية"
+          payload: '/provide_work_nature{"work_nature": "مختبرية"}'
+        - title: "فنية أو إبداعية"
+          payload: '/provide_work_nature{"work_nature": "إبداعية"}'
+  
+    - text: "ما المجال المهني الذي تطمح للعمل فيه مستقبلاً؟"
+      buttons:
+        - title: "الطب أو الرعاية الصحية"
+          payload: '/provide_work_nature{"work_nature": "طب"}'
+        - title: "الهندسة أو التكنولوجيا"
+          payload: '/provide_work_nature{"work_nature": "هندسة"}'
+        - title: "التعليم أو التدريب"
+          payload: '/provide_work_nature{"work_nature": "تعليم"}'
+        - title: "الأعمال أو الإدارة"
+          payload: '/provide_work_nature{"work_nature": "أعمال"}'
+        - title: "الفنون أو التصميم"
+          payload: '/provide_work_nature{"work_nature": "فنون"}'
+    - text: "هل تفضل الروتين اليومي أم التنوع وتعدد المهام؟"
+      buttons:
+        - title: "الروتين اليومي"
+          payload: '/provide_work_nature{"work_nature": "روتين يومي"}'
+        - title: "التنوع وتعدد المهام"
+          payload: '/provide_work_nature{"work_nature": "تنوع مهام"}'
+    - text: "هل تفضل العمل في فريق أم بشكل فردي؟"
+      buttons:
+        - title: "العمل في فريق"
+          payload: '/provide_work_nature{"work_nature": "عمل جماعي"}'
+        - title: "العمل الفردي"
+          payload: '/provide_work_nature{"work_nature": "عمل فردي"}'
+
+    
+  utter_provide_thinking_style:
+    - text: "كيف تتعامل مع مهمة جديدة لم تفهمها جيداً؟"
+      buttons:
+        - title: "أبدأ بالبحث والقراءة عنها"
+          payload: '/provide_thinking_style{"thinking_style": "بحث ذاتي"}'
+        - title: "أطلب المساعدة من الآخرين"
+          payload: '/provide_thinking_style{"thinking_style": "تعاوني"}'
+        - title: "أجرب بنفسي وأتعلم من الأخطاء"
+          payload: '/provide_thinking_style{"thinking_style": "تجريبي"}'
+        - title: "أنتظر التعليمات أو التوجيه من المدرّس"
+          payload: '/provide_thinking_style{"thinking_style": "توجيه خارجي"}'
+    - text: "عندما تواجه مشكلة، ما أول شيء تقوم به؟"
+      buttons:
+        - title: "أحلل المشكلة وأفكر في أسبابها"
+          payload: '/provide_thinking_style{"thinking_style": "تحليل أسباب"}'
+        - title: "أبحث عن حلول جاهزة أو مشابهة"
+          payload: '/provide_thinking_style{"thinking_style": "بحث عن حلول"}'
+        - title: "أتناقش مع الآخرين للوصول لحل"
+          payload: '/provide_thinking_style{"thinking_style": "حل جماعي"}'
+        - title: "أُجرب حلول مختلفة حتى أجد المناسب"
+          payload: '/provide_thinking_style{"thinking_style": "تجربة حلول"}'
+
+    - text: "ما نوع الأسئلة التي تستمتع بالتفكير فيها؟"
+      buttons:
+        - title: "أسئلة منطقية وتحليلية"
+          payload: '/provide_thinking_style{"thinking_style": "تفكير تحليلي"}'
+        - title: "أسئلة إبداعية وتخيلية"
+          payload: '/provide_thinking_style{"thinking_style": "تفكير إبداعي"}'
+        - title: "أسئلة عن الناس والتواصل"
+          payload: '/provide_thinking_style{"thinking_style": "تفكير اجتماعي"}'
+        - title: "أسئلة تنظيمية وتخطيطية"
+          payload: '/provide_thinking_style{"thinking_style": "تفكير تنظيمي"}'
+    - text: "كيف تفضل اتخاذ قراراتك؟"
+      buttons:
+        - title: "بناءً على الحقائق والتحليل"
+          payload: '/provide_thinking_style{"thinking_style": "قرار تحليلي"}'
+        - title: "بحسب الحدس والشعور الداخلي"
+          payload: '/provide_thinking_style{"thinking_style": "قرار حدسي"}'
+        - title: "بعد مناقشة الفكرة مع الآخرين"
+          payload: '/provide_thinking_style{"thinking_style": "قرار جماعي"}'
+        - title: "بعد وضع خطة وخيارات متعددة"
+          payload: '/provide_thinking_style{"thinking_style": "قرار مخطط"}'
+
+  utter_provide_subject:
+    - text: "ما هي المواد الدراسية التي تستمتع بها أكثر؟"
+      buttons:
+        - title: "الرياضيات"
+          payload: '/provide_subject{"subject": "رياضيات"}'
+        - title: "العلوم"
+          payload: '/provide_subject{"subject": "علوم"}'
+        - title: "الكيمياء"
+          payload: '/provide_subject{"subject": "الكيمياء"}'
+        - title: "الاقتصاد"
+          payload: '/provide_subject{"subject": "الاقتصاد"}'
+        - title: "الحاسوب"
+          payload: '/provide_subject{"subject": "حاسوب"}'
+        - title: "الفنون"
+          payload: '/provide_subject{"subject": "فنون"}'
+        - title: "الفيزياء"
+          payload: '/provide_subject{"subject": "الفيزياء"}'
+        - title: "غير ذلك"
+          payload: '/provide_subject{"subject": "غير ذلك"}'
+    - text: "أي مادة تجد نفسك مميزًا فيها من حيث الأداء أو الدرجات؟"
+      buttons:
+        - title: "الرياضيات"
+          payload: '/provide_subject{"subject": "رياضيات"}'
+        - title: "العلوم"
+          payload: '/provide_subject{"subject": "علوم"}'
+        - title: "الفيزياء "
+          payload: '/provide_subject{"subject": "فيزياء"}'
+        - title: "الاقتصاد"
+          payload: '/provide_subject{"subject": "الاقتصاد"}'
+        - title: "الحاسوب"
+          payload: '/provide_subject{"subject": "حاسوب"}'
+        - title: "لا أتميز في مادة معينة"
+          payload: '/provide_subject{"subject": "لا يوجد"}'
+
+        
+    - text: "إذا طُلب منك إعطاء درس لطلاب أصغر منك، أي مادة تختار؟"
+      buttons:
+        - title: "الرياضيات"
+          payload: '/provide_subject{"subject": "رياضيات"}'
+        - title: "العلوم"
+          payload: '/provide_subject{"subject": "علوم"}'
+        - title: "اللغة العربية"
+          payload: '/provide_subject{"subject": "عربي"}'
+        - title: "اللغة الإنجليزية"
+          payload: '/provide_subject{"subject": "انجليزي"}'
+        - title: "الحاسوب"
+          payload: '/provide_subject{"subject": "حاسوب"}'
+    
+    
+          
+  utter_provide_learning_style:
+    - text: "ما أسلوب التعلم الذي تفضله؟"
+      buttons:
+        - title: "التعلم من خلال المحاضرات"
+          payload: '/provide_learning_style{"learning_style": "محاضرات"}'
+        - title: "التعلم العملي والتطبيقي"
+          payload: '/provide_learning_style{"learning_style": "عملي"}'
+        - title: "التعلم الذاتي عبر الإنترنت"
+          payload: '/provide_learning_style{"learning_style": "ذاتي"}'
+        - title: "التعلم من خلال المشاريع الجماعية"
+          payload: '/provide_learning_style{"learning_style": "جماعي"}'
+        
+    - text: "هل تفضل الدراسة التي تعتمد على:"
+      buttons:
+        - title: "الحفظ والتلقين"
+          payload: '/provide_learning_style{"learning_style": "حفظ"}'
+        - title: "التحليل والتفكير النقدي"
+          payload: '/provide_learning_style{"learning_style": "تحليل"}'
+        - title: "الإبداع والابتكار"
+          payload: '/provide_learning_style{"learning_style": "إبداع"}'
+        - title: "التطبيق العملي"
+          payload: '/provide_learning_style{"learning_style": "تطبيق"}'
+        
+
+    - text: "كيف تفضل تقييم أدائك الدراسي؟"
+      buttons:
+        - title: "من خلال الاختبارات التحريرية"
+          payload: '/provide_learning_style{"learning_style": "اختبارات"}'
+        - title: "من خلال المشاريع والتقارير"
+          payload: '/provide_learning_style{"learning_style": "مشاريع"}'
+        - title: "من خلال العمل الجماعي"
+          payload: '/provide_learning_style{"learning_style": "عمل جماعي"}'
+        - title: "من خلال العروض التقديمية أو النقاشات"
+          payload: '/provide_learning_style{"learning_style": "عروض"}'
+
+
+    - text: "ما نوع الأنشطة الدراسية التي تستمتع بها أكثر؟"
+      buttons:
+        - title: "القراءة والكتابة"
+          payload: '/provide_learning_style{"learning_style": "قراءة"}'
+        - title: "حل المسائل والتحديات المنطقية"
+          payload: '/provide_learning_style{"learning_style": "مسائل"}'
+        - title: "تصميم أو تنفيذ مشاريع"
+          payload: '/provide_learning_style{"learning_style": "تصميم"}'
+        - title: "البحث والتجريب"
+          payload: '/provide_learning_style{"learning_style": "بحث"}'
+
+
+  utter_thank_you:
+    - text: "على الرحب والسعة! أنا هنا دائمًا لمساعدتك 😊."  
+    - text: "لا شكر على واجب! يسعدني أن أكون جزءًا من رحلتك الأكاديمية."  
+    - text: "سررت بمساعدتك! إذا احتجت أي شيء آخر، لا تتردد في السؤال."  
+    - text: "هذا واجبي! أتمنى لك كل التوفيق في اختيار تخصصك."  
+    - text: "العفو! إذا كنت بحاجة إلى مزيد من المعلومات، أنا هنا دائمًا."  
+    - text: "لا داعي للشكر"  
+    - text: "أي وقت! إذا كانت لديك أي أسئلة أخرى، لا تتردد في طرحها."  
+    - text: "سعيد بأنني استطعت مساعدتك! هل هناك أي شيء آخر ترغب في معرفته؟"  
+    - text: "أنا هنا لدعمك دائمًا! لا تتردد في سؤالي عن أي شيء يتعلق باختيار تخصصك."  
+    - text: "العفو! أتمنى لك رحلة تعليمية ممتعة ومليئة بالنجاح."  
+    - text: "لا شكر على واجب! اختيار التخصص خطوة مهمة، وسأكون هنا لدعمك في أي وقت."  
+    - text: "أنا سعيد بمساعدتك! إذا أردت استكشاف المزيد من التخصصات، أخبرني بذلك."  
+    - text: "سررت بمساعدتك! تذكر أن القرار بيدك، وأنا هنا فقط لتقديم الدعم."  
+    - text: "لا تتردد في العودة إذا احتجت إلى المزيد من المعلومات!"  
+
+actions:
+  - action_suggest_major
+  - action_ask_about_departments
+  - action_ask_about_specializations
+  - action_what_admission
+  
